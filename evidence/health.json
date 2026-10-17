@@ -1,0 +1,3 @@
+=== 最终健康 ===
+{"status":"ok","model_provider":"fake"}
+{"status": "ok", "mode": "real_proxy", "token_configured": true, "upstream": "http://127.0.0.1:8957", "time": "2026-10-17T03:39:48Z"}

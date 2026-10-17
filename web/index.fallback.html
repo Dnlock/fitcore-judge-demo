@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Fitcore 训练 Demo · REAL / CONTRACT_SIM / MOCK</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="phone">
+  <header class="topbar">
+    <div class="brand">Fitcore <span class="sub">训练 Demo</span></div>
+    <div id="mode-banner" class="mode"></div>
+  </header>
+
+  <div id="retry-banner" class="retry-banner hidden"></div>
+
+  <main class="content">
+    <!-- 视图1：训练开始 -->
+    <section id="view-start">
+      <h2>训练开始</h2>
+      <label class="lbl">演示场景
+        <select id="scene-select" onchange="FitcoreDemo.sceneChanged(this)">
+          <option value="scene1">场景一：卧推 60kg × 8（已确认）</option>
+          <option value="scene2">场景二：跨语句补充与确认</option>
+          <option value="scene3">场景三：纠错（8 → 7，不新增组）</option>
+          <option value="scene4">场景四：还能再做两个（不增加次数）</option>
+          <option value="scene5">场景五：大约做了 8 个（待确认）</option>
+          <option value="scene6">场景六：训练结束只统计已确认</option>
+        </select>
+      </label>
+      <div class="card">
+        <div class="rec-pill"><span class="dot"></span> 录音状态（MOCK）</div>
+        <p id="start-status" class="muted">尚未创建会话</p>
+        <p id="start-hint" class="hint"></p>
+        <div id="start-actions" class="btnrow"></div>
+      </div>
+      <div class="card">
+        <h3>本场景剧本</h3>
+        <ol id="scene-list" class="ev-list"></ol>
+      </div>
+      <p class="hint">所有语音均为合成剧本（MOCK），不采集真实麦克风、不接入真实声纹。</p>
+    </section>
+
+    <!-- 视图2：训练进行中 -->
+    <section id="view-active" class="hidden">
+      <h2>训练进行中</h2>
+      <div class="card">
+        <div class="rec-pill"><span class="dot pulse"></span> <span id="record-status">模拟录音中…（MOCK）</span></div>
+        <div id="progress" class="muted"></div>
+        <button id="next-btn" class="btn btn-primary" onclick="FitcoreDemo.next()">模拟语音作业</button>
+      </div>
+      <h3>训练组（动作 · 重量 · 次数）</h3>
+      <div id="set-queue" class="list"></div>
+      <h3 class="real-only-note">音频作业（8 态 Job 进度）</h3>
+      <div id="job-list" class="list"></div>
+    </section>
+
+    <!-- 视图3：Pending -->
+    <section id="view-pending" class="hidden">
+      <h2>Pending · 待确认</h2>
+      <div id="pending-list" class="list"></div>
+      <p id="pending-empty-hint" class="hint"></p>
+    </section>
+
+    <!-- 视图4：Correction -->
+    <section id="view-correction" class="hidden">
+      <h2>Correction · 纠错</h2>
+      <div id="correction-list" class="list"></div>
+      <p id="correction-hint" class="hint"></p>
+    </section>
+
+    <!-- 视图5：Review -->
+    <section id="view-review" class="hidden">
+      <h2>Review · 复盘</h2>
+      <div id="review-gate" class="card"><div id="review-empty"></div></div>
+      <div id="review-body" class="hidden">
+        <div class="card" id="review-stats"></div>
+        <h3>已确认训练组</h3>
+        <div id="review-list" class="list"></div>
+        <p id="review-meta" class="hint"></p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabs">
+    <button data-view="start" class="active" onclick="FitcoreDemo.view('start')">开始</button>
+    <button data-view="active" onclick="FitcoreDemo.view('active')">进行中</button>
+    <button data-view="pending" onclick="FitcoreDemo.view('pending')">Pending</button>
+    <button data-view="correction" onclick="FitcoreDemo.view('correction')">纠错</button>
+    <button data-view="review" onclick="FitcoreDemo.view('review')">Review</button>
+  </nav>
+
+  <footer class="foot">
+    Fitcore Demo · REAL / CONTRACT_SIM / MOCK_ONLY 模式徽标区分 ·
+    合成数据 · 不含真实入账引擎 · 未接入真实 ASR / 声纹 / 付费模型 / AWS<br>
+    Real 模式数据来自真实 Core 4797485 HTTP 接口；确定性测试 Provider 为测试条件，非真实 AI 结果
+    <button class="linkbtn" onclick="FitcoreDemo.reset()">重置演示</button>
+  </footer>
+</div>
+
+<script id="fitcore-demo-data" type="application/json">__DEMO_DATA__</script>
+<script src="js/httpAdapter.js"></script>
+<script src="js/v1client.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+[JUDGE-PROXY] http://0.0.0.0:8956  upstream=http://127.0.0.1:8957  token=服务端代持  GET白名单=8条 POST白名单=7条  静态根=/home/dsh-app/workspace/ws-judge-core/web

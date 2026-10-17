@@ -1,0 +1,1 @@
+[JUDGE-CORE] 隔离 Core 启动: http://127.0.0.1:8957  db=sqlite:////tmp/ws-judge-core-smoke/container-final.db  upstream_core=/home/dsh-app/workspace/fitcore-core-real  model_provider=fake  asr_provider=FAKE_TEST（测试ASR模式）  audio_test_source_trusted=True

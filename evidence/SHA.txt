@@ -1,0 +1,4 @@
+upstream_core_sha=479748526bf731b2dfe9292201394019ed7e088c
+proxy_source=WS-E/ws-demo/server/real_proxy.py（D2-01 已独立复验版本，只读复制）
+snapshot_check=diff -rq 快照app vs 上游app 完全一致（exit 0，无输出）
+upstream_fitcore_db_mtime=2026-10-16 06:59:33 UTC（冒烟前后不变=零改动）
